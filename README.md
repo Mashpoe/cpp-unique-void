@@ -1,7 +1,7 @@
 # unique_void
 A smart pointer that stores any type as a void* and properly deletes it using type erasure.
 
-This class does not require the user to manually pass in a template argument or a deleter, but it must be initialized with a pointer of the original type.
+This class does not require the user to manually pass in a template argument or a deleter, but it must be initialized with a pointer of the original type:
 
 ```c++
 #include <string>
@@ -24,7 +24,7 @@ int main() {
 }
 ```
 
-Because this class supports move semantics and does not require a template argument, you can store a collection of unique_void objects that point to different types
+Because this class supports move semantics and does not require a template argument, you can store a collection of unique_void objects that point to different types:
 
 ```c++
 #include <string>
@@ -46,7 +46,7 @@ int main() {
 }
 ```
 
-This class supports most of the methods in std::unique_ptr, but it does not support the `*` or `->` operators because void pointers cannot be dereferenced. instead, cast the result of `get()` to the proper type in order to dereference it, e.g. `*((int*)p.get()) += 2`
+This class supports most of the methods in std::unique_ptr, but it does not support the `*` or `->` operators because void pointers cannot be dereferenced. Instead, cast the result of `get()` to the proper type in order to dereference it, e.g. `*((int*)p.get()) += 2`
 
 The easiest way to test this class is to edit the deleter like so:
 
